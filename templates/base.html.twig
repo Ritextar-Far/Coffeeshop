@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-        {% block stylesheets %}
-        {% endblock %}
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}Coffeeshop{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>☕</text></svg>">
+        {% block stylesheets %}{% endblock %}
 
         {% block javascripts %}
             {% block importmap %}{{ importmap('app') }}{% endblock %}
@@ -13,12 +13,62 @@
 
         {% set frankenphp_hot_reload = app.request.server.get('FRANKENPHP_HOT_RELOAD') %}
         {% if frankenphp_hot_reload %}
-        <meta name="frankenphp-hot-reload:url" content="{{ frankenphp_hot_reload }}">
-        <script src="https://cdn.jsdelivr.net/npm/idiomorph"></script>
-        <script src="https://cdn.jsdelivr.net/npm/frankenphp-hot-reload/+esm" type="module"></script>
+            <meta name="frankenphp-hot-reload:url" content="{{ frankenphp_hot_reload }}">
+            <script src="https://cdn.jsdelivr.net/npm/idiomorph"></script>
+            <script src="https://cdn.jsdelivr.net/npm/frankenphp-hot-reload/+esm" type="module"></script>
         {% endif %}
     </head>
     <body>
+        <header class="entete-site">
+            <div class="conteneur-entete">
+                <a class="marque" href="{{ path('app_home') }}" aria-label="Accueil Coffeeshop">
+                    <span class="symbole-marque" aria-hidden="true">☕</span>
+                    <span>Coffee<span>shop</span></span>
+                </a>
+
+                <nav class="navigation-principale" aria-label="Navigation principale">
+                    <a href="{{ path('app_home') }}" class="lien-navigation">Accueil</a>
+                    <a href="{{ path('app_menu') }}" class="lien-navigation">Menu</a>
+                    <a href="#apropos" class="lien-navigation">À propos</a>
+                    <a href="{{ path('app_contact') }}" class="lien-navigation">Contact</a>
+                </nav>
+
+                <a class="bouton-entete" href="{{ path('app_menu') }}">Commander</a>
+            </div>
+        </header>
+
         {% block body %}{% endblock %}
+
+        {% block footer %}
+            <footer class="pied-page">
+                <div class="conteneur-pied-page">
+                    <div class="presentation-pied-page">
+                        <a class="logo-pied-page" href="{{ path('app_home') }}">
+                            <span aria-hidden="true">☕</span> Coffeeshop
+                        </a>
+                        <p>Votre café préféré pour savourer un moment chaleureux.</p>
+                    </div>
+
+                    <nav class="navigation-pied-page" aria-label="Liens utiles">
+                        <h2>Navigation</h2>
+                        <a href="{{ path('app_home') }}">Accueil</a>
+                        <a href="{{ path('app_menu') }}">Notre menu</a>
+                        <a href="#apropos">À propos</a>
+                        <a href="{{ path('app_contact') }}">Contact</a>
+                    </nav>
+
+                    <div class="contact-pied-page" id="contact">
+                        <h2>Nous contacter</h2>
+                        <p>123 rue du Café<br>75000 Paris</p>
+                        <p>Tél. : 01 23 45 67 89</p>
+                        <p>contact@coffeeshop.fr</p>
+                    </div>
+                </div>
+
+                <div class="bas-pied-page">
+                    <p>&copy; {{ "now"|date("Y") }} Coffeeshop. Tous droits réservés.</p>
+                </div>
+            </footer>
+        {% endblock %}
     </body>
 </html>

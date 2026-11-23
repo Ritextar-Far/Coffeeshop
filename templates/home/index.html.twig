@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil - {{ title }}{% endblock %}
+
+{% block body %}
+    <main>
+        <section class="bloc-presentation" aria-labelledby="titre-presentation">
+            <div class="contenu-presentation">
+                <p class="sous-titre">Notre spécialité</p>
+                <h1 id="titre-presentation">Un café préparé avec passion</h1>
+                <p>
+                    Découvrez des cafés soigneusement sélectionnés et préparés avec amour.
+                </p>
+                <a href="{{ path('app_menu') }}" class="bouton-principal">Découvrir le menu</a>
+            </div>
+        </section>
+
+        <section class="section-apropos" id="apropos">
+            <div class="conteneur section-apropos-grille">
+                <div class="visuel-apropos" aria-hidden="true">
+                    <span class="icone-cafe">☕</span>
+                </div>
+
+                <div class="contenu-apropos">
+                    <p class="sous-titre">À propos de nous</p>
+                    <h2>Un lieu simple, savoureux et convivial</h2>
+                    <p>
+                        Notre coffeeshop vous accueille tous les jours pour partager une pause gourmande.
+                        Nous travaillons avec des producteurs passionnés afin de proposer des cafés de qualité,
+                        torréfiés avec soin et servis avec le sourire.
+                    </p>
+                    <a class="lien-texte" href="#menu">Voir nos spécialités <span aria-hidden="true">→</span></a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-menu" id="menu">
+            <div class="conteneur">
+                <div class="titre-section">
+                    <p class="sous-titre">Nos favoris</p>
+                    <h2>Les cafés en tendance</h2>
+                </div>
+
+                <div class="grille-cafes">
+                    {% for cafe in cafes | slice(0, 4) %}
+                        <div class="carte-cafe">
+                            <div class="icone-carte cafe-marron" aria-hidden="true">☕</div>
+                            {% include 'menu/_card.html.twig' with {'cafe': cafe} %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+        <section class="section-temoignages">
+            <div class="conteneur">
+                <div class="titre-section">
+                    <p class="sous-titre">Témoignages clients</p>
+                    <h2>Ils nous recommandent</h2>
+                </div>
+
+                <div class="grille-temoignages">
+                    <blockquote class="carte-temoignage">
+                        <div class="etoiles" aria-label="5 étoiles">★★★★★</div>
+                        <p>« Un accueil chaleureux, un excellent café et une ambiance parfaite pour travailler ou se détendre. »</p>
+                        <footer><strong>Marie L.</strong><span>Cliente fidèle</span></footer>
+                    </blockquote>
+
+                    <blockquote class="carte-temoignage">
+                        <div class="etoiles" aria-label="5 étoiles">★★★★★</div>
+                        <p>« Le cappuccino est délicieux, les pâtisseries sont fraîches et le personnel est très attentionné. »</p>
+                        <footer><strong>Thomas R.</strong><span>Amateur de café</span></footer>
+                    </blockquote>
+
+                    <blockquote class="carte-temoignage">
+                        <div class="etoiles" aria-label="5 étoiles">★★★★★</div>
+                        <p>« Ma nouvelle adresse préférée pour mes pauses. Je recommande particulièrement le caramel latte. »</p>
+                        <footer><strong>Camille D.</strong><span>Cliente régulière</span></footer>
+                    </blockquote>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock %}
+

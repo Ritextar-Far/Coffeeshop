@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Menu - Coffeesshop{% endblock %}
+
+{% block body %}
+    <main class="page-menu">
+        <section class="banniere-menu">
+            <div class="contenu-banniere-menu">
+                <p class="sous-titre">Notre carte</p>
+                <h1>Découvrez nos cafés</h1>
+                <p>Des créations préparées avec passion pour satisfaire toutes vos envies.</p>
+            </div>
+        </section>
+
+        <section class="section-cartes-menu">
+            <div class="conteneur">
+                <div class="titre-section">
+                    <p class="sous-titre">Nos boissons</p>
+                    <h2>Le choix des amateurs</h2>
+                </div>
+
+                <div class="grille-cafes grille-menu">
+                    {% for cafe in cafes %}
+                        <article class="carte-cafe carte-menu">
+                            <div class="icone-carte" aria-hidden="true">☕</div>
+                            <div class="contenu-carte-menu">
+                                {% include 'menu/_card.html.twig' with {'cafe': cafe} %}
+                            </div>
+                        </article>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock %}
